@@ -34,6 +34,34 @@
 // doAsyncTask().then(() => console.log(message));
 // let message = 'promise resolved';
 
+// Promise.resolve('done').then(val => {
+//     console.log(val)
+//     return new Promise(resolve => {
+//         setTimeout(() => resolve('done2'), 1000)
+//     })
+// })
+// .then(val => console.log(val));
+
+// Promise.reject('fail')
+//     .then(val => console.log(val))
+//     .then(val => console.log(val), err => console.error(err))
+
+// new Promise((resolve, reject) => {
+//     throw 'fail';
+// })
+//     .then(val => {
+//         console.log(val)
+//     })
+//     .then(val => console.log(val), err => console.error(err))
+
+const doAsyncTask = delay => {
+    return new Promise(resolve => setTimeout(() => resolve(delay), delay))
+}
+
+let promises = [doAsyncTask(1000), doAsyncTask(2000), doAsyncTask(500)]
+
+Promise.all(promises).then(values => console.log(values))
+
 </script>
 </body>
 </html>
