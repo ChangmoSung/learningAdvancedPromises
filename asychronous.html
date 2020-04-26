@@ -54,14 +54,50 @@
 //     })
 //     .then(val => console.log(val), err => console.error(err))
 
-const doAsyncTask = delay => {
-    return new Promise(resolve => setTimeout(() => resolve(delay), delay))
+// const doAsyncTask = delay => {
+//     return new Promise(resolve => setTimeout(() => resolve(delay), delay))
+// }
+
+// let promises = [doAsyncTask(1000), doAsyncTask(2000), doAsyncTask(500)]
+
+// Promise.all(promises).then(values => console.log(values))
+
+// const doAsyncTask = () => Promise.resolve('done');
+
+// let asyncFunction = async function() {
+//     let value = await doAsyncTask();
+//     console.log(value);
+//     console.log('done2');
+//     return 3;
+// }
+
+// asyncFunction().then(v => console.log(v));
+
+// (async function() {
+    // doAsyncTask().then((val) => console.log(val));
+
+    // let value = await doAsyncTask();
+    // console.log(value);
+    // console.log('done2')
+// })()
+
+
+// doAsyncTask().then(val => console.log(val));
+// console.log('here')
+
+
+
+const doAsyncTask = () => Promise.reject('error');
+const asyncFunction = async function() {
+    try {
+        const value = await doAsyncTask();
+    } catch (e) {
+        console.error(e);
+        return;
+    }
 }
 
-let promises = [doAsyncTask(1000), doAsyncTask(2000), doAsyncTask(500)]
-
-Promise.all(promises).then(values => console.log(values))
-
+asyncFunction()
 </script>
 </body>
 </html>
